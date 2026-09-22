@@ -1,2 +1,5 @@
-print("Hello,Github!")
-print("This is my first programming project.")
+name = "Nora"
+
+print("hello,github")
+print("My name is",name)
+print("I'm learning programming!")
