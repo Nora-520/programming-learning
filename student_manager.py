@@ -1,8 +1,34 @@
-students = {}
+import json
+import os
+
+def save_students(students):
+    with open("students.json","w") as file:
+        json.dump(students,file)
+    print(os.getcwd())
+
+def load_students():
+    try:
+        with open("students.json","r") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return {}
 
 def add_student(students):
-    name = input("student name:")
-    score = int(input("student score:"))
+    while True:
+        name = input("student name:").strip()
+        if len(name) == 0:
+            print("Error.")
+        else:
+            break
+    while True:
+        try: 
+            score = int(input("student score:"))
+            if 0 <= score <= 100:
+                break
+            else:
+                print("Score must be between 0 and 100.")
+        except ValueError:
+            print("Invalid score.Please enter a number.")
     students[name] = score
 
 def show_student(students):
@@ -35,9 +61,11 @@ def find_highest(students):
                 highest_score = score
                 highest_name = name
         print("========================")
-        print("Average Score".center(24))
+        print("Highest Score".center(24))
         print("========================")
         print(highest_name,":",highest_score)
+
+students = load_students()
 
 while True:
     print("========================")
@@ -53,6 +81,7 @@ while True:
 
     if choice == "1":
         add_student(students)
+        save_students(students)
 
     elif choice == "2":
         show_student(students)
@@ -69,3 +98,5 @@ while True:
 
     else:
         print("Invalid option.")
+
+
