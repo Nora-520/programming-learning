@@ -34,7 +34,7 @@ def add_student(students):
 def show_student(students):
     print(f"{"Name":<15}{"Score":>5}")
     print("-"*20)
-    for name,score in students.items():
+    for name,score in sorted(students.items(),key=lambda x:x[1], reverse=Ture):
         print(f"{name:<15}{score:>5}")
 
 def calculate_average(students):
@@ -65,6 +65,45 @@ def find_highest(students):
         print("========================")
         print(highest_name,":",highest_score)
 
+def search_student(students):
+    name = input("Input a student's name:")
+    if name in students:
+        print("Student Found.")
+        print(f"Name:{name}")
+        print(f"Score:{students[name]}")
+    else:
+        print("Student not found.")
+
+def update_student(students):
+    while True:
+        name = input("Please input a name:")
+        if name in students:
+            break
+        else:
+            print("Student not found.")
+    while True:
+        try:
+            new_score = int(input("Please input the new score:"))
+            if 0 <= new_score <= 100:
+                break
+            else:
+                print("Score must be between 0 and 100.")
+        except ValueError:
+                    print("Invalid score.Please enter a number.")
+    students[name] = new_score
+
+def delete_student(students):
+    while True:
+            name = input("Please input a name:")
+            if name in students:
+                break
+            else:
+                print("Student not found.")
+    del students[name]
+    print("Student deleted successfully.")
+
+        
+
 students = load_students()
 
 while True:
@@ -75,7 +114,10 @@ while True:
     print("2.Show student")
     print("3.Calculate the average")
     print("4.The highest score")
-    print("5.Exit")
+    print("5.Search student")
+    print("6.Update student")
+    print("7.Delete student")
+    print("8.Exit")
 
     choice = input("Please choose:")
 
@@ -91,11 +133,24 @@ while True:
         
     elif choice == "4":
         find_highest(students)
-
+    
     elif choice == "5":
+        search_student(students)
+
+    elif choice == "6":
+        update_student(students)
+        save_students(students)
+
+    elif choice == "7":
+        delete_student(students)
+        save_students(students)
+    
+    elif choice == "8":
         print("Program exit.")
         break
 
+    
+    
     else:
         print("Invalid option.")
 
