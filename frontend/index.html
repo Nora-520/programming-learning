@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Manager</title>
+</head>
+
+<body>
+    <h1>Student Manager</h1>
+
+    <label>Student Name</label>
+    <input type="text" id="name">
+
+    <br><br>
+
+    <label>Score</label>
+    <input type="number" id="score">
+
+    <br><br>
+
+    <button onclick="addStudent">Add Student</button>
+
+<script>
+
+    function addStudent(){
+        let name = document.getElementById("name").value;
+        let score = document.getElementById("score").value;
+
+        console.log(name);
+        console.log(score);
+    }
+</script>
+
+</body>
+</html>
