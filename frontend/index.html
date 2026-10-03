@@ -17,16 +17,34 @@
 
     <br><br>
 
-    <button onclick="addStudent">Add Student</button>
+    <button onclick="addStudent()">Add Student</button>
+    <div id="studentList"></div>
 
 <script>
 
-    function addStudent(){
+   function addStudent(){
         let name = document.getElementById("name").value;
         let score = document.getElementById("score").value;
 
-        console.log(name);
-        console.log(score);
+        fetch("/students", {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                name:name,
+                score:score
+            })
+        })
+        .then(response => response.json())
+        .then(data =>{
+            console.log(data);
+            alert(data.message);
+        })
+        .catvh(error => {
+            console.error(error);
+            alert("Fail to add new student!")
+        })
     }
 </script>
 

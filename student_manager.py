@@ -106,52 +106,53 @@ def delete_student(students):
 
 students = load_students()
 
-while True:
-    print("========================")
-    print("Student Manager".center(24))
-    print("========================")
-    print("1.Add student")
-    print("2.Show student")
-    print("3.Calculate the average")
-    print("4.The highest score")
-    print("5.Search student")
-    print("6.Update student")
-    print("7.Delete student")
-    print("8.Exit")
+if __name__ == "__main__":
+    while True:
+        print("========================")
+        print("Student Manager".center(24))
+        print("========================")
+        print("1.Add student")
+        print("2.Show student")
+        print("3.Calculate the average")
+        print("4.The highest score")
+        print("5.Search student")
+        print("6.Update student")
+        print("7.Delete student")
+        print("8.Exit")
 
-    choice = input("Please choose:")
+        choice = input("Please choose:")
 
-    if choice == "1":
-        add_student(students)
-        save_students(students)
+        if choice == "1":
+            add_student(students)
+            save_students(students)
 
-    elif choice == "2":
-        show_student(students)
+        elif choice == "2":
+            show_student(students)
 
-    elif choice == "3":
-        calculate_average(students)
+        elif choice == "3":
+            calculate_average(students)
+            
+        elif choice == "4":
+            find_highest(students)
         
-    elif choice == "4":
-        find_highest(students)
-    
-    elif choice == "5":
-        search_student(students)
+        elif choice == "5":
+            search_student(students)
 
-    elif choice == "6":
-        update_student(students)
-        save_students(students)
+        elif choice == "6":
+            update_student(students)
+            save_students(students)
 
-    elif choice == "7":
-        delete_student(students)
-        save_students(students)
-    
-    elif choice == "8":
-        print("Program exit.")
-        break
+        elif choice == "7":
+            delete_student(students)
+            save_students(students)
+        
+        elif choice == "8":
+            print("Program exit.")
+            break
 
-    
-    
-    else:
-        print("Invalid option.")
+        
+        
+        else:
+            print("Invalid option.")
 
 
